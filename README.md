@@ -1,2 +1,2 @@
 # nore
-nore. - An AI Study Buddy
+An AI Study Buddy
