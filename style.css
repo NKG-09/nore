@@ -108,10 +108,21 @@ h1 {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  flex-grow: 1;
+  width: 25%;
 }
 
 #chatbox > textarea {
-  width: 50%;
+  width: 100%;
   resize: none;
   font-size: 1.5rem;
+}
+
+/* CALENDAR */
+
+#calendar {
+  min-height: 100%;
+  width: 50%;
+  flex-grow: 1;
+  border: solid black 1px;
 }
