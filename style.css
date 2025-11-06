@@ -10,11 +10,12 @@ ol, ul, menu {
   list-style: none;
 }
 
-/* VARIABLES */
+/* GLOBAL VARIABLES */
 
 :root {
   --gap: 20px;
   --small-gap: 10px;
+  --min-gap: 2.5px;
 
   --border-radius: 10px;
   
@@ -71,7 +72,7 @@ a {
 
 /* BASIC STUFF FOR THE CONTENT OF EACH PAGE */
 
-#content {
+#home {
   width: 100%;
   height: 100%;
   display: flex;
@@ -83,7 +84,10 @@ a {
 
 /* HOME PAGE CSS */
 
-#tasks {
+#tasks,
+#clock,
+#events,
+#news {
   width: 25%;
   height: 100%;
   display: flex;
@@ -92,7 +96,7 @@ a {
 
 h1 {
   max-width: 100%;
-  padding: var(--small-gap) 0;
+  padding: var(--small-gap);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -100,9 +104,10 @@ h1 {
 }
 
 #tasks .complete,
-#tasks .incomplete {
+#tasks .incomplete,
+.event-items {
   width: 100%;
-  height: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--small-gap);
@@ -121,19 +126,7 @@ h1 {
   padding: var(--small-gap);
   display: flex;
   flex-direction: column;
-  gap: var(--small-gap);
-}
-
-#clock,
-#events,
-#news {
-  flex-grow: 1;
-  width: 25%;
-  height: 100%;
-  border: solid white 1px;
-  border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
+  gap: var(--min-gap);
 }
 
 /* CHATBOX CSS FOR THE CHATBOX ON CHAT AND PLANNER PAGES */
