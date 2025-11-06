@@ -9,6 +9,15 @@ document.addEventListener("click", () => {
   );
 });
 
+document.addEventListener("keyup", (e) => {
+  if (e.key === "e" && incompleteTasksDisplay.childNodes.length) {
+    switchTask([...incompleteTasksDisplay.childNodes].at(0));
+  }
+  if (e.key === "r" && completeTasksDisplay.childNodes.length) {
+    switchTask([...completeTasksDisplay.childNodes].at(0));
+  }
+});
+
 function createTask (headingText, ...paras) {
   const task = document.createElement("div");
   task.classList.add("task");
@@ -28,4 +37,13 @@ function createTask (headingText, ...paras) {
   task.appendChild(paraList);
 
   incompleteTasksDisplay.appendChild(task);
+}
+
+function switchTask (task) {
+  if (task.parentElement === incompleteTasksDisplay) {
+    completeTasksDisplay.appendChild(task);
+  }
+  else {
+    incompleteTasksDisplay.appendChild(task);
+  }
 }
