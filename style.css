@@ -44,7 +44,7 @@ body {
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
-  min-width: max(50px, 2vw);
+  min-width: 50px;
   align-self: center;
 }
 
@@ -55,11 +55,11 @@ nav ul {
 }
 
 nav ul li {
-  height: 2em;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   border: solid white 1px;
   border-radius: var(--border-radius);
 }
