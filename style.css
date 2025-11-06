@@ -1,4 +1,4 @@
-/* FOR ALL PAGES */
+/* CSS RESET */
 
 * {
   margin: 0;
@@ -6,16 +6,33 @@
   box-sizing: border-box;
 }
 
-:root {
-  font-family: system-ui;
+ol, ul, menu {
+  list-style: none;
+}
 
+/* VARIABLES */
+
+:root {
   --gap: 20px;
   --small-gap: 10px;
+
+  --border-radius: 10px;
+  
+  --primary-color: white;
+  --secondary-color: grey;
+  --background-color: rgb(44, 44, 44);
 }
+
+/* UNIVERSAL RULES */
 
 :root, html, body {
   width: 100%;
   height: 100%;
+  
+  font-family: system-ui;
+
+  color: var(--primary-color);
+  background-color: var(--background-color);
 }
 
 body {
@@ -43,7 +60,8 @@ nav ul li {
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  border: solid black 1px;
+  border: solid white 1px;
+  border-radius: var(--border-radius);
 }
 
 a {
@@ -53,53 +71,69 @@ a {
 
 /* BASIC STUFF FOR THE CONTENT OF EACH PAGE */
 
-#home,
-#chatbox {
+#content {
   width: 100%;
   height: 100%;
   display: flex;
   padding: var(--gap);
-  border: solid black 1px;
+  gap: var(--gap);
+  border: solid white 1px;
+  border-radius: var(--border-radius);
 }
 
 /* HOME PAGE CSS */
 
-#home {
-  gap: var(--gap);
-}
-
-#tasks,
-#clock,
-#events,
-#news {
-  flex-grow: 1;
+#tasks {
+  width: 25%;
   height: 100%;
-  border: solid black 1px;
   display: flex;
   flex-direction: column;
 }
 
 h1 {
   max-width: 100%;
+  padding: var(--small-gap) 0;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.task-items,
-.event-items {
+#tasks .complete,
+#tasks .incomplete {
+  width: 100%;
+  height: 50%;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  flex-grow: 1;
-  padding: var(--small-gap);
-  overflow-y: scroll;
   gap: var(--small-gap);
+  overflow: auto;
+  padding: var(--small-gap);
+  border: solid var(--primary-color) 1px;
+  border-radius: var(--border-radius);
 }
 
 .task,
 .event {
   max-width: 100%;
-  min-height: 100px;
-  border: solid black 1px;
+  height: fit-content;
+  border: solid white 1px;
+  border-radius: var(--border-radius);
+  padding: var(--small-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-gap);
+}
+
+#clock,
+#events,
+#news {
+  flex-grow: 1;
+  width: 25%;
+  height: 100%;
+  border: solid white 1px;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
 }
 
 /* CHATBOX CSS FOR THE CHATBOX ON CHAT AND PLANNER PAGES */
@@ -124,5 +158,5 @@ h1 {
   min-height: 100%;
   width: 50%;
   flex-grow: 1;
-  border: solid black 1px;
+  border: solid white 1px;
 }
