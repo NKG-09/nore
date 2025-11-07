@@ -16,6 +16,9 @@ document.addEventListener("keyup", (e) => {
   if (e.key === "r" && completeTasksDisplay.childNodes.length) {
     switchTask([...completeTasksDisplay.childNodes].at(0));
   }
+  if (e.key === "q" && incompleteTasksDisplay.childNodes.length) {
+    removeTask([...incompleteTasksDisplay.childNodes].at(0));
+  }
 });
 
 function createTask (headingText, ...paras) {
@@ -46,4 +49,8 @@ function switchTask (task) {
   else {
     incompleteTasksDisplay.appendChild(task);
   }
+}
+
+function removeTask (task) {
+  task.remove();
 }
