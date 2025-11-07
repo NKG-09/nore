@@ -154,12 +154,14 @@ nav ul li {
   border-radius: var(--border-radius);
 }
 
-.task > div {
+.task > div,
+.event > div {
   display: flex;
   margin-top: var(--small-gap);
 }
 
-.task > div > button {
+.task > div > button,
+.event > div > button {
   width: 100%;
   font-size: 1.5rem;
 }
