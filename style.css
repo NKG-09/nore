@@ -154,6 +154,16 @@ nav ul li {
   border-radius: var(--border-radius);
 }
 
+.task > div {
+  display: flex;
+  margin-top: var(--small-gap);
+}
+
+.task > div > button {
+  width: 100%;
+  font-size: 1.5rem;
+}
+
 .timer {
   flex-direction: row;
   gap: var(--small-gap);
