@@ -128,8 +128,9 @@ h1 {
   display: flex;
   align-items: center;
   max-height: fit-content;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: var(--small-gap);
+  padding: 0 var(--small-gap);
   padding-bottom: var(--small-gap);
 }
 
@@ -140,7 +141,9 @@ h1 {
 .heading button {
   height: 100%;
   aspect-ratio: 1/1;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
 }
 
 .task,
