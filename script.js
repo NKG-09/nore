@@ -1,22 +1,35 @@
+// References for each section
+
 const incompleteTasksDisplay = document.querySelector("#tasks .incomplete");
 const completeTasksDisplay = document.querySelector("#tasks .complete");
 
-document.addEventListener("click", () => {
-  createTask(
-    "Finish English homework",
-    "Due date: 31/11/2025",
-    "Make sure to finish trigonometric equations",
-  );
+// Add event listeners to elements
+
+document.querySelectorAll("#tasks .heading button").forEach( (button) => { 
+  button.addEventListener("click", (e) => {
+    if (e.target.previousElementSibling.textContent === "Incomplete") { clearTasks(incompleteTasksDisplay); }
+    if (e.target.previousElementSibling.textContent === "Complete") { clearTasks(completeTasksDisplay); }
+  })
 });
 
 document.addEventListener("keyup", (e) => {
-  if (e.key === "e" && incompleteTasksDisplay.childNodes.length) {
+  if (e.key === "q") {
+    createTask(
+      "Finish English homework",
+      "Due date: 31/11/2025",
+      "Make sure to finish trigonometric equations",
+    );
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  if (e.key === "w" && incompleteTasksDisplay.childNodes.length) {
     switchTask([...incompleteTasksDisplay.childNodes].at(0));
   }
-  if (e.key === "r" && completeTasksDisplay.childNodes.length) {
+  if (e.key === "e" && completeTasksDisplay.childNodes.length) {
     switchTask([...completeTasksDisplay.childNodes].at(0));
   }
-  if (e.key === "q" && incompleteTasksDisplay.childNodes.length) {
+  if (e.key === "r" && incompleteTasksDisplay.childNodes.length) {
     removeTask([...incompleteTasksDisplay.childNodes].at(0));
   }
 });
@@ -49,6 +62,10 @@ function switchTask (task) {
   else {
     incompleteTasksDisplay.appendChild(task);
   }
+}
+
+function clearTasks (tasksDisplay) {
+  tasksDisplay.innerHTML = "";
 }
 
 function removeTask (task) {
