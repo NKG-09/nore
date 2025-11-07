@@ -98,13 +98,29 @@ nav ul li {
   flex-direction: column;
 }
 
-h1 {
-  max-width: 100%;
-  text-align: center;
+.heading {
+  max-height: fit-content;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--small-gap);
+  padding: 0 var(--small-gap);
+  padding-bottom: var(--small-gap);
+}
+
+#tasks .heading:nth-child(3) {
+  padding-top: var(--small-gap);
+}
+
+.heading button {
+  height: 100%;
+  aspect-ratio: 1/1;
+
+  font-size: 2rem;
+
+  background: none;
+  border: none;
 }
 
 #tasks .complete,
@@ -122,28 +138,6 @@ h1 {
   border: solid var(--primary-color) 1px;
   border-radius: var(--border-radius);
   overflow: auto;
-}
-
-.heading {
-  display: flex;
-  align-items: center;
-  max-height: fit-content;
-  justify-content: space-between;
-  gap: var(--small-gap);
-  padding: 0 var(--small-gap);
-  padding-bottom: var(--small-gap);
-}
-
-#tasks .heading:nth-child(3) {
-  padding-top: var(--small-gap);
-}
-
-.heading button {
-  height: 100%;
-  aspect-ratio: 1/1;
-  font-size: 2rem;
-  background: none;
-  border: none;
 }
 
 .task,
