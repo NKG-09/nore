@@ -3,6 +3,7 @@
 const incompleteTasksDisplay = document.querySelector("#tasks .incomplete");
 const completeTasksDisplay = document.querySelector("#tasks .complete");
 const eventsDisplay = document.querySelector("#events .event-items");
+const clockDisplay = document.querySelector("#clock .timers");
 
 // Add event listeners to elements
 
@@ -14,6 +15,7 @@ document.querySelectorAll("#tasks .heading button").forEach( (button) => {
 });
 
 document.querySelector("#events .heading button").addEventListener("click", clearEvents);
+document.querySelector("#clock .heading button").addEventListener("click", clearTimers);
 
 document.addEventListener("keyup", (e) => {
   if (e.key === "q") {
@@ -30,6 +32,9 @@ document.addEventListener("keyup", (e) => {
       "Thermodynamics",
       "Carbon And Its Compounds",
     );
+  }
+  if (e.key === "t") {
+    createTimer("05:00", "Break");
   }
 });
 
@@ -144,4 +149,42 @@ function clearEvents () {
 
 function removeEvent (event) {
   event.remove();
+}
+
+/* CLOCK SECTION FUNCTIONS */
+
+function createTimer (time, name) {
+  const timer = document.createElement("div");
+  timer.classList.add("timer");
+
+  const startButton = document.createElement("button");
+  startButton.textContent = "▶️";
+  
+  const div = document.createElement("div");
+  
+  const h2 = document.createElement("h2");
+  h2.textContent = time;
+  div.appendChild(h2);
+  
+  const span = document.createElement("span");
+  span.textContent = name;
+  div.appendChild(span);
+  
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "❎";
+  deleteButton.addEventListener("click", () => { removeTimer(timer) } );
+  
+  timer.appendChild(startButton);
+  timer.appendChild(div);
+  timer.appendChild(deleteButton);
+
+  clockDisplay.appendChild(timer);
+}
+
+function clearTimers () {
+  clockDisplay.innerHTML = "";
+}
+
+function removeTimer (timer) {
+  timer.remove();
 }

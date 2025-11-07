@@ -179,6 +179,10 @@ nav ul li {
   border: none;
 }
 
+.timer div {
+  flex-grow: 1;
+}
+
 /* CHATBOX CSS FOR THE CHATBOX ON CHAT AND PLANNER PAGES */
 
 #chatbox {
