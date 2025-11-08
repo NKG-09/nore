@@ -1,21 +1,15 @@
 /* GLOBAL REFERENCES */
 
-const incompleteTasksDisplay = document.querySelector("#tasks .incomplete");
-const completeTasksDisplay = document.querySelector("#tasks .complete");
-const eventsDisplay = document.querySelector("#events .event-items");
-const clockDisplay = document.querySelector("#clock .timers");
+const incompleteTasksDisplay = document.querySelector(".tasks.incomplete");
+const completeTasksDisplay = document.querySelector(".tasks.complete");
+const eventsDisplay = document.querySelector(".events");
+const timersDisplay = document.querySelector(".timers");
 
 // Add event listeners to elements
 
-document.querySelectorAll("#tasks .heading button").forEach( (button) => { 
-  button.addEventListener("click", (e) => {
-    if (e.target.previousElementSibling.textContent === "Incomplete") { clearTasks(incompleteTasksDisplay); }
-    if (e.target.previousElementSibling.textContent === "Complete") { clearTasks(completeTasksDisplay); }
-  })
+document.querySelectorAll("header button").forEach( (button) => {
+  button.addEventListener("click", clearCardsList)
 });
-
-document.querySelector("#events .heading button").addEventListener("click", clearEvents);
-document.querySelector("#clock .heading button").addEventListener("click", clearTimers);
 
 document.addEventListener("keyup", (e) => {
   if (e.key === "q") {
@@ -41,157 +35,121 @@ document.addEventListener("keyup", (e) => {
 /* TASKS SECTION FUNCTIONS */
 
 // Create task to add to display
-function createTask (headingText, ...paras) {
-  const task = document.createElement("div");
-  task.classList.add("task");
-  
-  // Add heading
-  const heading = document.createElement("h2");
-  heading.textContent = headingText;
-
-  // Add paragraphs
-  const paraList = document.createElement("ul");
-  
-  paras.forEach((para) => {
-    const li = document.createElement("li");
-    li.textContent = para;
-    paraList.appendChild(li);
-  });
-
-  // Add buttons for delete and completion
-  const buttonsContainer = document.createElement("div");
-
-  // Delete
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete";
-  deleteButton.addEventListener("click", () => { removeTask(task) } );
-  buttonsContainer.appendChild(deleteButton);
-
-  // Complete
-  const completeButton = document.createElement("button");
-  completeButton.textContent = "Complete";
-  completeButton.addEventListener("click", switchTask);
-  buttonsContainer.appendChild(completeButton);
-
-  // Add all created elements to task card
-  task.appendChild(heading);
-  task.appendChild(paraList);
-  task.appendChild(buttonsContainer);
-
-  // Add task card to display
-  incompleteTasksDisplay.appendChild(task);
+function createTask (name, ...notes) {
+  createCard("task", name, notes);
 }
 
 // Switch task between Incomplete and Complete tasks displays
-function switchTask (e) {
-  const task = e.target.closest(".task"); // Get task card from the button which was clicked
-  
-  // Switch task card's display
-  // Switch text of the switching button as appropriate
-  if (task.parentElement === incompleteTasksDisplay) {
-    task.querySelector("button:nth-child(2)").textContent = "Incomplete";
-    completeTasksDisplay.appendChild(task);
-  }
-  else {
-    task.querySelector("button:nth-child(2)").textContent = "Complete";
-    incompleteTasksDisplay.appendChild(task);
-  }
-}
+function switchTask () {
+  const task = this.closest(".task"); // Get task card from the button which was clicked
 
-// Clear all tasks of a particular display
-function clearTasks (tasksDisplay) {
-  tasksDisplay.innerHTML = "";
-}
+  // Swap this button's text between Complete and Incomplete
+  this.textContent = (this.textContent === "Complete") ? "Incomplete" : "Complete";
 
-// Remove a task
-function removeTask (task) {
-  task.remove();
+  // Swap the task card's container based on what the button says
+  this.textContent === "Complete"
+  ? incompleteTasksDisplay.appendChild(task)
+  : completeTasksDisplay.appendChild(task);
 }
 
 /* EVENTS SECTION FUNCTIONS */
 
-function createEvent (headingText, ...paras) {
-  const event = document.createElement("div");
-  event.classList.add("event");
-  
-  // Add heading
-  const heading = document.createElement("h2");
-  heading.textContent = headingText;
-
-  // Add paragraphs
-  const paraList = document.createElement("ul");
-  
-  paras.forEach((para) => {
-    const li = document.createElement("li");
-    li.textContent = para;
-    paraList.appendChild(li);
-  });
-
-  // Add button for delete
-  const buttonsContainer = document.createElement("div");
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete";
-  deleteButton.addEventListener("click", () => { removeEvent(event) } );
-  buttonsContainer.appendChild(deleteButton);
-
-  // Add all created elements to task card
-  event.appendChild(heading);
-  event.appendChild(paraList);
-  event.appendChild(buttonsContainer);
-
-  // Add task card to display
-  eventsDisplay.appendChild(event);
-}
-
-function clearEvents () {
-  eventsDisplay.innerHTML = "";
-}
-
-function removeEvent (event) {
-  event.remove();
+function createEvent (name, ...notes) {
+  createCard("event", name, notes);
 }
 
 /* CLOCK SECTION FUNCTIONS */
 
 function createTimer (time, name) {
-  const timer = document.createElement("div");
-  timer.classList.add("timer");
-
-  // Add start button
-  const startButton = document.createElement("button");
-  startButton.textContent = "▶️";
-  
-  // Add container for time and name
-  const div = document.createElement("div");
-  
-  // Time
-  const h2 = document.createElement("h2");
-  h2.textContent = time;
-  div.appendChild(h2);
-  
-  // Name
-  const span = document.createElement("span");
-  span.textContent = name;
-  div.appendChild(span);
-  
-  // Add delete button
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "❎";
-  deleteButton.addEventListener("click", () => { removeTimer(timer) } );
-  
-  // Add everything to timer card
-  timer.appendChild(startButton);
-  timer.appendChild(div);
-  timer.appendChild(deleteButton);
-
-  // Add timer card to display
-  clockDisplay.appendChild(timer);
+  createCard("timer", time, name);
 }
 
-function clearTimers () {
-  clockDisplay.innerHTML = "";
+/* CARDS MANAGEMENT */
+
+function createCard (type, nameOrTime, notes = null) {
+  // Create card div and assign its type
+  const card = document.createElement("div");
+  card.classList.add("card", type);
+  
+  if (type === "task" || type === "event") {
+    // Add heading
+    const nameDisplay = document.createElement("h2");
+    nameDisplay.textContent = nameOrTime;
+    
+    // Add list of notes
+    const notesList = document.createElement("ul");
+    notes.forEach((note) => {
+      const li = document.createElement("li");
+      li.textContent = note;
+      notesList.appendChild(li);
+    });
+
+    const buttons = document.createElement("div");
+  
+    // Add delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => { removeCard(card) } );
+    buttons.appendChild(deleteButton);
+  
+    // Add complete button if it's a task
+    if (type === "task") {
+      const completeButton = document.createElement("button");
+      completeButton.textContent = "Complete";
+      completeButton.addEventListener("click", switchTask);
+      buttons.appendChild(completeButton);
+    }
+      
+    // Add all created elements to task card
+    card.appendChild(nameDisplay);
+    card.appendChild(notesList);
+    card.appendChild(buttons);
+  }
+  else if (type === "timer") {
+    // Add start button
+    const startButton = document.createElement("button");
+    startButton.textContent = "▶️";
+
+    // Add content container
+    const content = document.createElement("div");
+
+    // Add time display
+    const time = document.createElement("h2");
+    time.textContent = nameOrTime;
+    content.appendChild(time);
+
+    // Add name display
+    const span = document.createElement("span");
+    span.textContent = notes;
+    content.appendChild(span);
+
+    // Add delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "❎";
+    deleteButton.addEventListener("click", () => { removeCard(card) } );
+
+    // Add everything to timer card
+    card.appendChild(startButton);
+    card.appendChild(content);
+    card.appendChild(deleteButton);
+  }
+
+  // Identify appropriate display
+  let display = null;
+  switch (type) {
+    case "task": display = incompleteTasksDisplay; break;
+    case "event": display = eventsDisplay; break;
+    case "timer": display = timersDisplay; break;
+  }
+
+  // Add card to appropriate display
+  display.appendChild(card);
 }
 
-function removeTimer (timer) {
-  timer.remove();
+function removeCard (card) {
+  card.remove();
+}
+
+function clearCardsList () {
+  this.closest("header").nextElementSibling.innerHTML = "";
 }
