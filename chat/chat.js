@@ -1,6 +1,8 @@
 const textarea = document.querySelector("textarea");
 const messages = document.querySelector(".messages");
 
+updateTextareaHeight();
+
 textarea.addEventListener("keyup", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
     sendMessage();
@@ -9,7 +11,7 @@ textarea.addEventListener("keyup", (e) => {
 
 textarea.addEventListener("input", updateTextareaHeight);
 
-function updateTextareaHeight (e) {
+function updateTextareaHeight () {
   textarea.style.height = "auto";
   textarea.style.height = textarea.scrollHeight + "px";
 }

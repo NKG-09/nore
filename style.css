@@ -51,7 +51,7 @@ body {
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
-  min-width: 3vw;
+  min-width: clamp(50px, 50px, 3vw);
   align-self: center;
 }
 
@@ -213,13 +213,21 @@ nav ul li {
   height: fit-content;
   padding: var(--small-gap);
   display: flex;
+}
+
+.messages > .message:has(.user-message) {
   justify-content: flex-end;
+}
+
+.messages > .message:has(.bot-message) {
+  justify-content: flex-start;
 }
 
 .message > .user-message,
 .message > .bot-message {
   height: fit-content;
   width: fit-content;
+  justify-self: center;
   max-width: 50%;
   overflow-wrap: break-word;
   padding: var(--small-gap);
@@ -236,8 +244,6 @@ nav ul li {
 }
 
 .chatbox > .message-box > textarea {
-  min-height: 3em;
-  height: 3em;
   max-height: 100%;
   flex-grow: 1;
   overflow: auto;
@@ -245,6 +251,8 @@ nav ul li {
   padding: var(--small-gap);
   
   font-size: 1rem;
+  outline: none;
+  box-shadow: none;
   border: var(--border);
   border-radius: var(--border-radius);
   color: var(--primary-color);
