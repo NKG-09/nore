@@ -157,27 +157,34 @@ function createTimer (time, name) {
   const timer = document.createElement("div");
   timer.classList.add("timer");
 
+  // Add start button
   const startButton = document.createElement("button");
   startButton.textContent = "▶️";
   
+  // Add container for time and name
   const div = document.createElement("div");
   
+  // Time
   const h2 = document.createElement("h2");
   h2.textContent = time;
   div.appendChild(h2);
   
+  // Name
   const span = document.createElement("span");
   span.textContent = name;
   div.appendChild(span);
   
+  // Add delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "❎";
   deleteButton.addEventListener("click", () => { removeTimer(timer) } );
   
+  // Add everything to timer card
   timer.appendChild(startButton);
   timer.appendChild(div);
   timer.appendChild(deleteButton);
 
+  // Add timer card to display
   clockDisplay.appendChild(timer);
 }
 
