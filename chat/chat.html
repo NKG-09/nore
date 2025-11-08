@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
     <link rel="stylesheet" href="../style.css">
-    <script src="../script.js" defer></script>
+    <script src="chat.js" defer></script>
   </head>
 
   <body>
@@ -20,8 +20,17 @@
       </ul>
     </nav>
 
-    <div id="chatbox">
-        <textarea></textarea>
+    <div id="chat">
+        <div class="chatbox">
+          <div class="messages"></div>
+          <div class="message-box">
+            <textarea rows="1"></textarea>
+            <button>➡️</button>
+          </div>
+        </div>
+        <div class="chat-history">
+
+        </div>
     </div>
   </body>
 </html>

@@ -22,6 +22,7 @@ a {
   --small-gap: 10px;
   --min-gap: 2.5px;
 
+  --border: solid var(--primary-color) 1px;
   --border-radius: 10px;
   
   --primary-color: white;
@@ -50,7 +51,7 @@ body {
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
-  min-width: 50px;
+  min-width: 3vw;
   align-self: center;
 }
 
@@ -68,20 +69,21 @@ nav ul li {
   align-items: center;
 
   font-size: 2rem;
-  border: solid var(--primary-color) 1px;
+  border: var(--border);
   border-radius: var(--border-radius);
 }
 
 /* BASIC STUFF FOR THE CONTENT OF EACH PAGE */
 
-#home {
+#home,
+#chat {
   width: 100%;
   height: 100%;
 
   display: flex;
   padding: var(--gap);
   gap: var(--gap);
-  border: solid var(--primary-color) 1px;
+  border: var(--border);
   border-radius: var(--border-radius);
 }
 
@@ -135,7 +137,7 @@ nav ul li {
   flex-direction: column;
   padding: var(--small-gap);
   gap: var(--small-gap);
-  border: solid var(--primary-color) 1px;
+  border: var(--border);
   border-radius: var(--border-radius);
   overflow: auto;
 }
@@ -150,7 +152,7 @@ nav ul li {
   flex-direction: column;
   padding: var(--small-gap);
   gap: var(--min-gap);
-  border: solid var(--primary-color) 1px;
+  border: var(--border);
   border-radius: var(--border-radius);
 }
 
@@ -183,20 +185,85 @@ nav ul li {
   flex-grow: 1;
 }
 
-/* CHATBOX CSS FOR THE CHATBOX ON CHAT AND PLANNER PAGES */
+/* CHAT SECTION CSS */
 
-#chatbox {
+.chatbox {
+  height: 100%;
+  width: 75%;
+
+  display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: center;
-  flex-grow: 1;
-  width: 25%;
+
+  padding: var(--small-gap);
+  gap: var(--small-gap);
+  border: var(--border);
+  border-radius: var(--border-radius);
 }
 
-#chatbox > textarea {
+.chatbox > .messages {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.messages > .message {
   width: 100%;
+  height: fit-content;
+  padding: var(--small-gap);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message > .user-message,
+.message > .bot-message {
+  height: fit-content;
+  width: fit-content;
+  max-width: 50%;
+  overflow-wrap: break-word;
+  padding: var(--small-gap);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.chatbox > .message-box {
+  width: 100%;
+  height: fit-content;
+  max-height: 20%;
+  display: flex;
+  align-items: center;
+}
+
+.chatbox > .message-box > textarea {
+  min-height: 3em;
+  height: 3em;
+  max-height: 100%;
+  flex-grow: 1;
+  overflow: auto;
   resize: none;
-  font-size: 1.5rem;
+  padding: var(--small-gap);
+  
+  font-size: 1rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  color: var(--primary-color);
+  background-color: var(--background-color);
+}
+
+.chatbox > .message-box > button {
+  font-size: 2rem;
+  aspect-ratio: 1/1;
+  background: none;
+  border: none;
+}
+
+.chat-history {
+  height: 100%;
+  width: 25%;
+  
+  border: var(--border);
+  border-radius: var(--border-radius);
 }
 
 /* CALENDAR */
