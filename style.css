@@ -137,7 +137,7 @@ section > div {
 }
 
 .card {
-  max-width: 100%;
+  width: 100%;
   height: fit-content;
 
   display: flex;
@@ -153,7 +153,7 @@ section > div {
   gap: var(--small-gap);
 }
 
-.timer button {
+.timer > button {
   height: 100%;
   aspect-ratio: 1/1;
   font-size: 2rem;
@@ -161,15 +161,24 @@ section > div {
   border: none;
 }
 
-.timer div {
+.timer > div {
   flex-grow: 1;
 }
 
 /* CHAT SECTION CSS */
 
+.chat {
+  flex-wrap: wrap-reverse;
+}
+
+.chat > section {
+  flex-grow: 1;
+  max-width: 25%;
+}
+
 .chatbox {
+  flex-grow: 5;
   height: 100%;
-  width: 75%;
 
   display: flex;
   flex-direction: column;
@@ -244,19 +253,6 @@ section > div {
   aspect-ratio: 1/1;
   background: none;
   border: none;
-}
-
-.chat-history {
-  width: 25%;
-}
-
-.chat-card {
-  width: 100%;
-  height: fit-content;
-  padding: var(--small-gap);
-
-  border: var(--border);
-  border-radius: var(--border-radius);
 }
 
 /* CALENDAR */

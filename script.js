@@ -40,7 +40,7 @@ function createTask (name, ...notes) {
 }
 
 // Switch task between Incomplete and Complete tasks displays
-function switchTask () {
+function switchTask (e) {
   const task = this.closest(".task"); // Get task card from the button which was clicked
 
   // Swap this button's text between Complete and Incomplete
@@ -69,7 +69,7 @@ function createTimer (time, name) {
 function createCard (type, nameOrTime, notes = null) {
   // Create card div and assign its type
   const card = document.createElement("div");
-  card.classList.add("card", type);
+  card.classList.add(type, "card");
   
   if (type === "task" || type === "event") {
     // Add heading
