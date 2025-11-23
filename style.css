@@ -46,15 +46,13 @@ body {
   display: flex;
   padding: var(--gap);
   gap: var(--gap);
-
-  justify-content: center;
-  align-items: center;
 }
 
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
   min-width: min(50px, 3vw);
+  align-self: center;
 }
 
 nav ul {
@@ -72,14 +70,12 @@ nav ul li {
 
   font-size: 2rem;
   border: var(--border);
-  border-radius: var(--border-radius);
 }
 
 /* BASIC STUFF FOR THE CONTENT OF EACH PAGE */
 
 #container {
-  width: 100%;
-  height: 100%;
+  flex: 1;
 
   display: flex;
   gap: var(--gap);
@@ -88,8 +84,7 @@ nav ul li {
 /* HOME PAGE CSS */
 
 section {
-  width: 25%;
-  height: 100%;
+  flex: 1;
   
   display: flex;
   flex-direction: column;
@@ -112,9 +107,6 @@ header button {
 }
 
 section > div {
-  width: 100%;
-  height: 100%;
-  
   display: flex;
   flex-direction: column;
   gap: var(--small-gap);
@@ -128,8 +120,7 @@ section > div {
 
   padding: var(--small-gap);
   gap: var(--small-gap);
-  background-color: var(--secondary-color);
-  border: none;
+  border: var(--border);
 }
 
 .card div:first-child {
@@ -156,27 +147,23 @@ section > div {
 
 /* CHAT SECTION CSS */
 
-.chat {
-  flex-wrap: wrap-reverse;
-}
-
-.chat > section {
-  flex-grow: 1;
-  max-width: 25%;
+#chat-ui {
+  flex-direction: row;
 }
 
 .chatbox {
-  flex-grow: 5;
+  flex: 1;
   height: 100%;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  padding: var(--small-gap);
+  
   gap: var(--small-gap);
-  border: var(--border);
-  border-radius: var(--border-radius);
+}
+
+.chat .chatbox {
+  flex: 5;
 }
 
 .chatbox > .messages {
@@ -187,8 +174,7 @@ section > div {
 }
 
 .messages > .message {
-  width: 100%;
-  height: fit-content;
+  flex: 1;
   padding: var(--small-gap);
   display: flex;
 }
@@ -223,7 +209,7 @@ section > div {
 
 .chatbox > .message-box > textarea {
   max-height: 100%;
-  flex-grow: 1;
+  flex: 1;
   overflow: auto;
   resize: none;
   padding: var(--small-gap);
@@ -244,13 +230,33 @@ section > div {
   border: none;
 }
 
-/* CALENDAR */
+/* PLANNER SECTION CSS */
+
+.planner > #chat-ui {
+  flex-direction: column-reverse;
+}
+
+.planner .chatbox {
+  flex: 1;
+}
 
 #calendar {
-  min-height: 100%;
-  width: 50%;
-  flex-grow: 1;
-  border: solid white 1px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+#dates {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 0;
+  border: var(--border);
+}
+
+.date {
+  border: var(--border);
 }
 
 /* RESPONSIVE STYLES */

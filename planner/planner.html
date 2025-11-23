@@ -7,6 +7,7 @@
     <title>Planner</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../script.js" defer></script>
+    <script src="../chat/chat.js" defer="defer"></script>
   </head>
 
   <body>
@@ -20,22 +21,88 @@
       </ul>
     </nav>
 
-    <div id="container">
-      <div id="chatbox">
-          <textarea></textarea>
-      </div>
-      <div id="tasks">
-          <h1>Tasks</h1>
-          <div class="task-items">
-            <div class="task">
-              <h2>Finish English Homework</h2>
-              <p>Due date: 20/11/2025</p>
-            </div>
+    <div id="container" class="planner">
+      <section id="chat-ui">
+        <div class="chatbox">
+          <div class="messages"></div>
+          <div class="message-box">
+            <textarea rows="1"></textarea>
+            <button>➡️</button>
           </div>
         </div>
-      <div id="calendar">
-    </div>
+        <section>
+          <div class="chat-history">
+            <div class="card">
+              <h2>Quantum Physics: An Incredible Science</h2>
+            </div>
+          </div>
+        </section>
+      </section>
 
+      <section>
+        <header>
+          <h1>Tasks</h1>
+          <button>❎</button>
+        </header>
+        <div class="tasks"></div>
+      </section>
+
+      <section id="calendar">
+        <header>
+          <h1>January</h1>
+        </header>
+        <div id="dates">
+          <div class="date">Mon</div>
+          <div class="date">Tue</div>
+          <div class="date">Wed</div>
+          <div class="date">Thu</div>
+          <div class="date">Fri</div>
+          <div class="date">Sat</div>
+          <div class="date">Sun</div>
+          <div class="date">01</div>
+          <div class="date">02</div>
+          <div class="date">03</div>
+          <div class="date">04</div>
+          <div class="date">05</div>
+          <div class="date">06</div>
+          <div class="date">07</div>
+          <div class="date">08</div>
+          <div class="date">09</div>
+          <div class="date">10</div>
+          <div class="date">11</div>
+          <div class="date">12</div>
+          <div class="date">13</div>
+          <div class="date">14</div>
+          <div class="date">15</div>
+          <div class="date">16</div>
+          <div class="date">17</div>
+          <div class="date">18</div>
+          <div class="date">19</div>
+          <div class="date">20</div>
+          <div class="date">21</div>
+          <div class="date">22</div>
+          <div class="date">23</div>
+          <div class="date">24</div>
+          <div class="date">25</div>
+          <div class="date">26</div>
+          <div class="date">27</div>
+          <div class="date">28</div>
+          <div class="date">29</div>
+          <div class="date">30</div>
+          <div class="date">31</div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+          <div class="date"></div>
+        </div>
+      </section>
     </div>
   </body>
 </html>

@@ -19,10 +19,10 @@ function updateTextareaHeight () {
 function sendMessage () {
   messages.appendChild(createMessageCard(textarea.value, false));
 
-  messages.scrollTop = messages.scrollHeight;
-  textarea.value = "";
   updateTextareaHeight();
   getBotResponse();
+  textarea.value = "";
+  messages.scrollTop = messages.scrollHeight;
 }
 
 function getBotResponse () {
