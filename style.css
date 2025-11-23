@@ -26,8 +26,8 @@ a {
   --border-radius: 10px;
   
   --primary-color: white;
-  --secondary-color: grey;
-  --background-color: rgb(44, 44, 44);
+  --secondary-color: rgb(32, 32, 32);
+  --background-color: rgb(0, 0, 0);
 }
 
 /* UNIVERSAL RULES */
@@ -48,13 +48,13 @@ body {
   gap: var(--gap);
 
   justify-content: center;
+  align-items: center;
 }
 
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
-  min-width: clamp(50px, 50px, 3vw);
-  align-self: center;
+  min-width: min(50px, 3vw);
 }
 
 nav ul {
@@ -82,10 +82,7 @@ nav ul li {
   height: 100%;
 
   display: flex;
-  padding: var(--gap);
   gap: var(--gap);
-  border: var(--border);
-  border-radius: var(--border-radius);
 }
 
 /* HOME PAGE CSS */
@@ -96,21 +93,12 @@ section {
   
   display: flex;
   flex-direction: column;
+  gap: var(--small-gap);
 }
 
 header {
-  max-height: fit-content;
-
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: var(--small-gap);
-  padding: 0 var(--small-gap);
-  padding-bottom: var(--small-gap);
-}
-
-header.complete {
-  padding-top: var(--small-gap);
 }
 
 header button {
@@ -129,40 +117,41 @@ section > div {
   
   display: flex;
   flex-direction: column;
-  padding: var(--small-gap);
   gap: var(--small-gap);
-  border: var(--border);
-  border-radius: var(--border-radius);
   overflow: auto;
 }
 
 .card {
   width: 100%;
-  height: fit-content;
 
   display: flex;
-  flex-direction: column;
+
   padding: var(--small-gap);
-  gap: var(--min-gap);
-  border: var(--border);
-  border-radius: var(--border-radius);
-}
-
-.timer {
-  flex-direction: row;
   gap: var(--small-gap);
-}
-
-.timer > button {
-  height: 100%;
-  aspect-ratio: 1/1;
-  font-size: 2rem;
-  background: none;
+  background-color: var(--secondary-color);
   border: none;
 }
 
-.timer > div {
-  flex-grow: 1;
+.card div:first-child {
+  flex: 1;
+}
+
+.card div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-gap);
+}
+
+.task input[type="checkbox"],
+.card button {
+  height: 50px;
+  aspect-ratio: 1 / 1;
+  font-size: 2rem;
+  border: none;
+}
+
+.card button {
+  background: #ff0000;
 }
 
 /* CHAT SECTION CSS */
@@ -266,7 +255,7 @@ section > div {
 
 /* RESPONSIVE STYLES */
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   body {
     flex-direction: column-reverse;
   }
@@ -277,15 +266,12 @@ section > div {
 
   #container {
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
   }
 
   section {
-    min-width: 50%;
-  }
-}
-
-@media (max-width: 800px) {
-  section {
-    min-width: 100%;
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 }
