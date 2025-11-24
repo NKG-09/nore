@@ -4,21 +4,16 @@ const tasksDisplay = document.querySelector(".tasks");
 const eventsDisplay = document.querySelector(".events");
 const timersDisplay = document.querySelector(".timers");
 
-// Add event listeners to elements
-
-document.querySelectorAll("header button").forEach( (button) => {
-  button.addEventListener("click", clearCardsList)
-});
-
-document.addEventListener("keyup", (e) => {
-  if (e.key === "q") {
+// Add some default elements
+for (let i = 0; i < 10; i++) {
+  if (tasksDisplay) {
     createTask(
       "Finish English homework",
       "Due date: 31/11/2025",
       "Make sure to finish trigonometric equations",
     );
   }
-  if (e.key === "e") {
+  if (eventsDisplay) {
     createEvent(
       "Science test at tuition",
       "Control And Coordination",
@@ -26,9 +21,14 @@ document.addEventListener("keyup", (e) => {
       "Carbon And Its Compounds",
     );
   }
-  if (e.key === "t") {
+  if (timersDisplay) {
     createTimer("05:00", "Break");
   }
+}
+
+// Add event listeners to elements
+document.querySelectorAll("header button").forEach( (button) => {
+  button.addEventListener("click", clearCardsList)
 });
 
 /* TASKS SECTION FUNCTIONS */
