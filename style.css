@@ -24,16 +24,18 @@ a {
 /* GLOBAL VARIABLES */
 
 :root {
-  --gap: 20px;
-  --small-gap: 10px;
+  --big-gap: 15px;
+  --gap: 10px;
+  --small-gap: 5px;
   --min-gap: 2.5px;
 
-  --border: solid var(--primary-color) 1px;
+  --border: solid var(--border-color) 1px;
   --border-radius: 10px;
   
-  --primary-color: white;
-  --secondary-color: rgb(32, 32, 32);
-  --background-color: rgb(0, 0, 0);
+  --primary-color: rgb(255, 255, 255);
+  --border-color: rgb(95, 95, 95);
+  --secondary-color: rgb(42, 42, 42);
+  --background-color: rgb(22, 22, 22);
 }
 
 /* UNIVERSAL RULES */
