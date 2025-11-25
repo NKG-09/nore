@@ -52,8 +52,8 @@ a {
 
 body {
   display: flex;
-  padding: var(--gap);
-  gap: var(--gap);
+  padding: var(--big-gap);
+  gap: var(--big-gap);
 }
 
 /* NAVIGATION UI SHOWN ON ALL PAGES */
