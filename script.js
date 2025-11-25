@@ -39,10 +39,8 @@ function createTask (name, ...notes) {
 }
 
 // Switch task between Incomplete and Complete tasks displays
-function switchTask (task) {
-  this.checked
-  ? tasksDisplay.prepend(task)
-  : tasksDisplay.appendChild(task);
+function toggleTaskComplete (task) {
+  task.classList.toggle("task-complete");
 }
 
 /* EVENTS SECTION FUNCTIONS */
@@ -74,9 +72,9 @@ function createCard (type, name, notes = null) {
   content.appendChild(nameDisplay);
   
   if (type === "task") {
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.addEventListener("click", () => { switchTask(card) } );
+    const checkbox = document.createElement("button");
+    checkbox.classList.add("task-checkbox");
+    checkbox.addEventListener("click", () => { toggleTaskComplete(card) } );
     buttons.appendChild(checkbox);
   }
   
@@ -97,13 +95,14 @@ function createCard (type, name, notes = null) {
 
     // Add start button
     const start = document.createElement("button");
-    start.textContent = "▶️";
+    start.classList.add("start-button");
     buttons.appendChild(start);
   }
 
   // Add delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "";
+  deleteButton.classList.add("delete-button");
   deleteButton.addEventListener("click", () => { removeCard(card) } );
   buttons.appendChild(deleteButton);
 

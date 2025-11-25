@@ -111,29 +111,35 @@ nav ul li:nth-of-type(5) a { background-image: url(icons/settings.svg); }
   gap: var(--gap);
 }
 
-/* HOME PAGE CSS */
+button {
+  aspect-ratio: 1 / 1;
+  height: 40px;
+  background-color: transparent;
+  border: var(--border);
+  border-radius: 50%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  filter: brightness(1);
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 section {
   flex: 1;
   
   display: flex;
   flex-direction: column;
-  gap: var(--small-gap);
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-header button {
-  height: 100%;
-  aspect-ratio: 1/1;
-
-  font-size: 2rem;
-
-  background: none;
-  border: none;
+  gap: var(--gap);
 }
 
 section > div {
@@ -143,39 +149,53 @@ section > div {
   overflow: auto;
 }
 
+/* CARD COLUMNS */
+
 .card {
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: max(100px, 1fr);
 
-  display: flex;
-
-  padding: var(--small-gap);
-  gap: var(--small-gap);
+  padding: var(--gap);
+  gap: var(--gap);
   border: var(--border);
+  border-radius: var(--border-radius);
 }
 
-.card div:first-child {
-  flex: 1;
+.card h2 {
+  margin-bottom: var(--small-gap);
 }
 
 .card div:last-child {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   gap: var(--small-gap);
 }
 
-.task input[type="checkbox"],
-.card button {
-  height: 50px;
-  aspect-ratio: 1 / 1;
-  font-size: 2rem;
-  border: none;
+.task-checkbox {
+  background-color: transparent;
 }
 
-.card button {
-  background: #ff0000;
+.task-complete .task-checkbox {
+  background-image: url(icons/check.svg);
+  background-size: 36px;
 }
 
-/* CHAT SECTION CSS */
+.start-button {
+  background-image: url(icons/play.svg);
+}
+
+.timer h2 {
+  line-height: 4rem;
+  height: 4rem;
+  font-size: 4rem;
+}
+
+.delete-button {
+  background-image: url(icons/trash.svg);
+}
+
+/* CHAT COLUMN CSS */
 
 #chat-ui {
   flex-direction: row;
