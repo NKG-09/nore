@@ -57,14 +57,16 @@ body {
 /* NAVIGATION UI SHOWN ON ALL PAGES */
 
 nav {
-  min-width: min(50px, 3vw);
-  align-self: center;
+  width: 48px;
 }
 
 nav ul {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  justify-content: center;
+  gap: var(--min-gap);
 }
 
 nav ul li {
@@ -75,8 +77,28 @@ nav ul li {
   align-items: center;
 
   font-size: 2rem;
-  border: var(--border);
+  border-radius: 50%;
 }
+
+nav ul li:hover,
+.active-page {
+  background-color: var(--secondary-color);
+}
+
+nav ul li a {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  filter: brightness(1);
+}
+
+nav ul li:nth-of-type(1) a { background-image: url(icons/home.svg); }
+nav ul li:nth-of-type(2) a { background-image: url(icons/chat.svg); }
+nav ul li:nth-of-type(3) a { background-image: url(icons/calendar.svg); }
+nav ul li:nth-of-type(4) a { background-image: url(icons/mood.svg); }
+nav ul li:nth-of-type(5) a { background-image: url(icons/settings.svg); }
 
 /* BASIC STUFF FOR THE CONTENT OF EACH PAGE */
 
