@@ -181,6 +181,10 @@ section > div {
   background-size: 36px;
 }
 
+.task-complete {
+  opacity: 0.25;
+}
+
 .start-button {
   background-image: url(icons/play.svg);
 }
