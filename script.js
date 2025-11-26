@@ -5,25 +5,84 @@ const eventsDisplay = document.querySelector(".events");
 const timersDisplay = document.querySelector(".timers");
 
 // Add some default elements
-for (let i = 0; i < 10; i++) {
-  if (tasksDisplay) {
-    createTask(
-      "Finish English homework",
-      "Due date: 31/11/2025",
-      "Make sure to finish trigonometric equations",
-    );
-  }
-  if (eventsDisplay) {
-    createEvent(
-      "Science test at tuition",
-      "Control And Coordination",
-      "Thermodynamics",
-      "Carbon And Its Compounds",
-    );
-  }
-  if (timersDisplay) {
-    createTimer("05:00", "Break");
-  }
+if (tasksDisplay) {
+  createTask(
+    "Finish English homework", 
+    "Due date: 31/11/2025",    
+    "Complete the assigned reading on 'The Great Gatsby'.",
+    "Write a 1-page summary of the key themes in the novel."
+  );
+  createTask(
+    "Prepare for Math test", 
+    "Due date: 05/12/2025",    
+    "Review chapters 4-6 of Algebra and Geometry.",
+    "Focus on solving quadratic equations and circle geometry problems."
+  );
+  createTask(
+    "Write History essay", 
+    "Due date: 02/12/2025",    
+    "Research the causes of the French Revolution.",
+    "Write a 2-page essay discussing the impact of the revolution on Europe."
+  );
+  createTask(
+    "Complete Chemistry lab report", 
+    "Due date: 03/12/2025",    
+    "Write a report on the acid-base titration experiment.",
+    "Include data analysis and conclusion based on your observations."
+  );
+  createTask(
+    "Study for Biology quiz", 
+    "Due date: 29/11/2025",    
+    "Review notes on photosynthesis and cellular respiration.",
+    "Prepare to answer questions on plant cell structure and function."
+  );
+  createTask(
+    "Practice Spanish vocabulary", 
+    "Due date: 01/12/2025",    
+    "Go through 20 new vocabulary words and their meanings.",
+    "Use each word in a sentence and review pronunciation."
+  );
+}
+
+if (eventsDisplay) {
+  createEvent(
+    "Math test on Algebra",  
+    "Algebra and Equations", 
+    "Quadratic functions",
+    "Polynomials"
+  );
+  createEvent(
+    "History presentation on Ancient Rome", 
+    "Roman Empire", 
+    "Caesar and the Senate",
+    "Roman culture and architecture"
+  );
+  createEvent(
+    "Science project deadline",  
+    "Physics: Laws of Motion", 
+    "Force and acceleration",
+    "Projectile motion experiment"
+  );
+  createEvent(
+    "Chemistry quiz",  
+    "Chemical Reactions", 
+    "Balancing equations",
+    "Types of chemical reactions"
+  );
+  createEvent(
+    "Spanish oral exam",  
+    "Spanish: Conversation Skills", 
+    "Introduce yourself in Spanish",
+    "Talk about your daily routine in Spanish"
+  );
+}
+
+if (timersDisplay) {
+  createTimer("05:00", "Take a short break"); 
+  createTimer("25:00", "Pomodoro study session: Review math formulas");
+  createTimer("15:00", "Flashcard review: Biology terms");
+  createTimer("30:00", "Focus time: Write history essay");
+  createTimer("10:00", "Quick Spanish vocabulary review");
 }
 
 // Add event listeners to elements
