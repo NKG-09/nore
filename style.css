@@ -107,8 +107,18 @@ nav ul li:nth-of-type(5) a { background-image: url(icons/settings.svg); }
 #container {
   flex: 1;
 
-  display: flex;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  grid-auto-flow: column;
   gap: var(--gap);
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.home {
+  --columns: 4;
+  grid-template-columns: repeat(var(--columns), 1fr);
 }
 
 button {
@@ -135,18 +145,11 @@ header {
 }
 
 section {
-  flex: 1;
-  
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-}
-
-section > div {
   display: flex;
   flex-direction: column;
   gap: var(--small-gap);
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 /* CARD COLUMNS */
@@ -315,6 +318,12 @@ section > div {
 
 /* RESPONSIVE STYLES */
 
+@media (max-width: 1200px) {
+  .home {
+    grid-template-columns: repeat(var(--columns), 400px);
+  }
+}
+
 @media (max-width: 900px) {
   body {
     flex-direction: column-reverse;
@@ -335,12 +344,10 @@ section > div {
   }
 
   #container {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    grid-template-columns: repeat(var(--columns), 100%);
   }
 
-  section {
-    flex: 0 0 100%;
+  #container > * {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
