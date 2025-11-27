@@ -202,89 +202,87 @@ section {
   background-image: url(icons/trash.svg);
 }
 
-/* CHAT COLUMN CSS */
+/* CHAT PAGE CSS */
 
-#chat-ui {
-  flex-direction: row;
+.chat {
+  --columns: 2;
+  grid-template-columns: 1fr 300px;
 }
 
 .chatbox {
-  flex: 1;
-  height: 100%;
-  
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   
-  gap: var(--small-gap);
+  gap: var(--big-gap);
 }
 
-.chat .chatbox {
-  flex: 5;
+.input-box,
+.messages {
+  width: min(100%, 750px);
+  align-self: center;
 }
 
 .chatbox > .messages {
   height: fit-content;
   display: flex;
   flex-direction: column;
+  gap: var(--gap);
   overflow: auto;
 }
 
-.messages > .message {
-  flex: 1;
-  padding: var(--small-gap);
+.user-message,
+.bot-message {
+  width: fit-content;
   display: flex;
 }
 
-.messages > .message:has(.user-message) {
-  justify-content: flex-end;
-}
-
-.messages > .message:has(.bot-message) {
-  justify-content: flex-start;
-}
-
-.message > .user-message,
-.message > .bot-message {
-  height: fit-content;
-  width: fit-content;
-  justify-self: center;
-  max-width: 50%;
-  overflow-wrap: break-word;
-  padding: var(--small-gap);
+.user-message {
+  max-width: 75%;
+  padding: var(--gap);
+  background-color: var(--secondary-color);
   border: var(--border);
   border-radius: var(--border-radius);
+  align-self: flex-end;
 }
 
-.chatbox > .message-box {
-  width: 100%;
-  height: fit-content;
-  max-height: 20%;
+.bot-message {
+  align-self: flex-start;
+}
+
+.chatbox > .input-box {
+  min-height: 62px;
+  max-height: 250px;
   display: flex;
   align-items: center;
+  background-color: var(--secondary-color);
+  border: var(--border);
+  border-radius: 31px;
+  padding: var(--gap);
+  gap: var(--small-gap);
 }
 
-.chatbox > .message-box > textarea {
+.chatbox > .input-box > textarea {
+  margin: var(--gap);
   max-height: 100%;
   flex: 1;
   overflow: auto;
   resize: none;
-  padding: var(--small-gap);
   
   font-size: 1rem;
+  font-family: inherit;
+  line-height: 1rem;
   outline: none;
   box-shadow: none;
-  border: var(--border);
-  border-radius: var(--border-radius);
+  border: none;
+  background: none;
   color: var(--primary-color);
-  background-color: var(--background-color);
 }
 
-.chatbox > .message-box > button {
-  font-size: 2rem;
-  aspect-ratio: 1/1;
-  background: none;
-  border: none;
+.chatbox > .input-box > button {
+  background-image: url(icons/send.svg);
+  align-self: flex-end;
 }
 
 /* PLANNER SECTION CSS */
