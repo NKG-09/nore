@@ -22,35 +22,38 @@
     </nav>
 
     <div id="container" class="planner">
-      <section id="chat-ui">
-        <div class="chatbox">
-          <div class="messages"></div>
-          <div class="message-box">
-            <textarea rows="1"></textarea>
-            <button>➡️</button>
-          </div>
-        </div>
-        <section>
-          <div class="chat-history">
-            <div class="card">
-              <h2>Quantum Physics: An Incredible Science</h2>
+      <div class="chat">
+        <header>
+          <h1>Quantum Physics</h1>
+        </header>
+        <section class="chat-history">
+          <div class="card">
+            <div>
+              <h2>Quantum Physics</h2>
+              <p>A brief history</p>
             </div>
+            <button class="delete-button"></button>
           </div>
         </section>
-      </section>
+        <div class="chatbox">
+          <div class="messages"></div>
+          <div class="input-box">
+            <textarea rows="1"></textarea>
+            <button></button>
+          </div>
+        </div>
+      </div>
 
-      <section>
-        <header>
-          <h1>Tasks</h1>
-          <button>❎</button>
-        </header>
-        <div class="tasks"></div>
-      </section>
+      <header>
+        <h1>Tasks</h1>
+        <button class="delete-button"></button>
+      </header>
+      <section class="tasks"></section>
 
+      <header>
+        <h1>January</h1>
+      </header>
       <section id="calendar">
-        <header>
-          <h1>January</h1>
-        </header>
         <div id="dates">
           <div class="date">Mon</div>
           <div class="date">Tue</div>

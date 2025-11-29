@@ -14,7 +14,6 @@ textarea.addEventListener("keyup", (e) => {
 textarea.addEventListener("input", updateTextareaHeight);
 
 function updateTextareaHeight () {
-  if (textarea.scrollHeight < textarea.clientHeight) { return }
   textarea.style.height = "auto";
   textarea.style.height = textarea.scrollHeight + "px";
 }
