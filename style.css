@@ -223,18 +223,59 @@ section {
 }
 
 .chatbox > .messages {
-  height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  
   overflow: auto;
+  gap: var(--gap);
 }
 
 .user-message,
 .bot-message {
   width: fit-content;
+  max-width: 100%;
   overflow-wrap: anywhere;
   display: flex;
+  flex-direction: column;
+}
+
+.user-message *,
+.bot-message * {
+  width: fit-content;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.user-message h1,
+.bot-message h1 {
+  margin-bottom: 6px;
+}
+
+.user-message h2,
+.bot-message h2 {
+  margin-bottom: 4px;
+}
+
+.user-message h3,
+.bot-message h3,
+.user-message h4,
+.bot-message h4,
+.user-message h5,
+.bot-message h5
+.user-message h6,
+.bot-message h6 {
+  margin-bottom: 2px;
+}
+
+.user-message ul,
+.bot-message ul,
+.user-message ol,
+.bot-message ol {
+  margin-left: 25px;
+}
+
+pre {
+  overflow-x: auto;
 }
 
 .user-message {
