@@ -1,0 +1,82 @@
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--big-gap);
+  justify-self: center;
+  width: min(750px, 100%);
+}
+
+.chatbox > .input-box {
+  max-height: 256px;
+
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: 100%;
+  padding: var(--gap);
+  gap: var(--gap);
+  border: var(--border);
+  border-radius: 32px;
+
+  background-color: var(--sec-bg-color);
+}
+
+.input-box > textarea {
+  max-height: 100%;
+
+  padding: var(--gap);
+  overflow: auto;
+  resize: none;
+  
+  outline: none;
+  border: none;
+  background: none;
+  color: var(--fg-color);
+  box-shadow: none;
+
+  font-family: var(--font-family);
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.chatbox > .input-box > button {
+  align-self: end;
+}
+
+.chatbox > .messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  overflow: auto;
+  gap: var(--gap);
+}
+
+.message {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.message * {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.user {
+  align-self: flex-end;
+  max-width: 75%;
+  padding: var(--gap);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: var(--sec-bg-color);
+}
+
+.assistant {
+  align-self: flex-start;
+}
+
+pre {
+  overflow-x: auto;
+}

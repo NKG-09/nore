@@ -1,0 +1,21 @@
+:root {
+  /* Colors */
+  --fg-color: rgb(255, 255, 255);
+  --sec-bg-color: rgb(42, 42, 42);
+  --bg-color: rgb(22, 22, 22);
+  --border-color: rgb(95, 95, 95);
+  
+  /* Spacing */
+  --big-gap: 15px;
+  --gap: 10px;
+  --small-gap: 5px;
+  --min-gap: 2.5px;
+
+  /* Borders */
+  --border: solid var(--border-color) 1px;
+  --border-radius: 10px;
+  --rounded: 50%;
+
+  /* Typography */
+  --font-family: system-ui;
+}

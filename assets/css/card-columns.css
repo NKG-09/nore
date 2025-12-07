@@ -1,0 +1,61 @@
+section {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  gap: var(--gap);
+}
+
+header {
+  display: flex;
+  gap: var(--small-gap);
+}
+
+header > h1 {
+  flex: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-gap);
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: max(100px, 1fr);
+  padding: var(--gap);
+  gap: var(--gap);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.card h2 {
+  margin-bottom: var(--small-gap);
+}
+
+.card div:last-child {
+  display: flex;
+  flex-direction: column; 
+  gap: var(--small-gap);
+}
+
+.task-checkbox svg {
+  display: none;
+  height: 75%;
+}
+
+.task-complete .task-checkbox svg {
+  display: inline-block;
+}
+
+.task-complete {
+  opacity: 0.25;
+}
+
+.timer h2 {
+  line-height: 4rem;
+  height: 4rem;
+  font-size: 4rem;
+}
