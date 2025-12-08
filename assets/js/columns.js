@@ -1,87 +1,127 @@
-const tasksDisplays = [...document.querySelectorAll(".tasks")];
-const eventsDisplays = [...document.querySelectorAll(".events")];
-const timersDisplays = [...document.querySelectorAll(".timers")];
+/* Variable declarations */
+const columns = {
+  "tasks": [],
+  "events": [],
+  "timers": [],
+}
 
-let tasks = [];
-let events = [];
-let timers = [];
+const columnsDisplays = {
+  "tasks": [...document.querySelectorAll(".tasks")],
+  "events": [...document.querySelectorAll(".events")],
+  "timers": [...document.querySelectorAll(".timers")],
+}
 
-renderData();
+/* Class declarations */
+class Card {
+  constructor(column) {
+    this.type = this.constructor.name.toLowerCase();
+    this.column = column;
+    this.references = [];
+  }
 
-function renderData () {
-  tasks = JSON.parse(localStorage.getItem('tasks')) ?? [];
-  events = JSON.parse(localStorage.getItem('events')) ?? [];
-  timers = JSON.parse(localStorage.getItem('timers')) ?? [];
+  removeSelf () {
+    this.references.forEach(reference => reference.remove());
+    this.references = [];
 
-  tasks.forEach((task) => createCard(task));
-  events.forEach((event) => createCard(event));
-  timers.forEach((timer) => createCard(timer));
+    const index = columns[this.column].indexOf(this);
+    columns[this.column].splice(index, 1);
+
+    saveData();
+  }
+}
+
+class Task extends Card {
+  constructor(title, notes = [], completed = false) {
+    super("tasks");
+    this.title = title;
+    this.notes = notes;
+    this.completed = completed;
+  }
+
+  toggleComplete () {
+    this.completed = !this.completed;
+    this.references.forEach(el => el.classList.toggle("task-complete"));
+    saveData();
+  }
+}
+
+class Event extends Card {
+  constructor(title, notes = []) {
+    super("events");
+    this.title = title;
+    this.notes = notes;
+  }
+}
+
+class Timer extends Card {
+  constructor(time, name) {
+    super("timers");
+    this.time = time;
+    this.name = name;
+  }
+}
+
+/* Load data on start */
+loadData();
+
+/* Main functions */
+function generateExamples () {
+  for (let i = 0; i < 10; i++) {
+    addCard(new Task("Finish English homework", ["Due Date: 12/10/2024", "Chapter on Shakespeare"], false));
+    addCard(new Event("English exam", ["Date: 12/10/2024", "Romeo and Juliet", "Hamlet"]));
+    addCard(new Timer("25:00", "Pomodoro"));
+
+    addCard(new Task("Finish Science project", ["Due Date: 12/10/2024", "Properly labelled diagram of the human heart", "Essay on the circulatory system"], false));
+    addCard(new Event("Lecture on quantum mechanics", ["Date: 12/10/2024", "IMPORTANT: Speech by Oppenheimer", "Guest: Neils Bohr"]));
+    addCard(new Timer("05:00", "Break"));
+  }
+}
+
+function loadData () {
+  const constructors = {
+    "tasks": Task,
+    "events": Event,
+    "timers": Timer,
+  };
+  
+  for (const [key, Constructor] of Object.entries(constructors)) {
+    const data = JSON.parse(localStorage.getItem(key));
+    columns[key] = data ? data.map(item => Object.assign(new Constructor(), item)) : [];
+  }
+
+  for (let key in columns) {
+    columns[key].forEach(card => {
+      card.references = columnsDisplays[key].map(display => 
+        display.appendChild(generateCardElement(card))
+      );
+    });
+  }
 }
 
 function saveData () {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  localStorage.setItem('events', JSON.stringify(events));
-  localStorage.setItem('timers', JSON.stringify(timers));
+  for (let key in columns) localStorage.setItem(key, JSON.stringify(columns[key]));
 }
 
-function clearColumn (type) {
-  const arr = {
-    "task": tasks,
-    "event": events,
-    "timers": timers,
-  }[type];
-  arr.length = 0;
-  renderData();
-}
+function addCard (card) {
+  card.references = columnsDisplays[card.column].map(display =>
+    appendCard(display, generateCardElement(card))
+  );
 
-/* TASKS SECTION FUNCTIONS */
-
-// Create task to add to display
-function createTask (name, complete, ...notes) {
-  const task = {type:"task", name, complete, notes};
-  createCard(task);
-  tasks.push(task);
+  columns[card.column].push(card);
   saveData();
 }
 
-// Switch task between Incomplete and Complete tasks displays
-function toggleTaskComplete (task, data) {
-  task.classList.toggle("task-complete");
-  data.complete = !data.complete;
-  saveData();
-}
-
-/* EVENTS SECTION FUNCTIONS */
-
-function createEvent (name, ...notes) {
-  const event = {type:"event", name, notes};
-  createCard(event);
-  events.push(event);
-  saveData();
-}
-
-/* CLOCK SECTION FUNCTIONS */
-
-function createTimer (time, name) {
-  const timer = {type:"timer", time, name};
-  createCard(timer);
-  timers.push(timer);
-  saveData();
-}
-
-/* CARDS MANAGEMENT */
-
-function createCard (data) {
+function generateCardElement (data) {
   // Create card div and assign its type
   const card = document.createElement("div");
-  card.classList.add(data.type, "card");  
+  card.classList.add(data.type, "card");
   
   // Add content container
   const content = document.createElement("div");
   content.innerHTML = DOMPurify.sanitize(
     data.type === "timer"
     ? `<h2>${data.time}</h2>` + `<span>${data.name}</span>`
-    : `<h2>${data.name}</h2>` + data.notes.map(note => `<p>${note}</p>`).join('')
+    : `<h2>${data.title}</h2>` + data.notes.map(note => `<p>${note}</p>`).join('')
   );
 
   const buttons = document.createElement("div");
@@ -95,9 +135,10 @@ function createCard (data) {
       </svg>
     `;
     checkbox.classList.add("task-checkbox");
-    checkbox.addEventListener("click", () => { toggleTaskComplete(card, data) } );
+    checkbox.addEventListener("click", () => data.toggleComplete());
     buttons.appendChild(checkbox);
-    if (data.complete) { card.classList.add("task-complete"); }
+    
+    if (data.completed) card.classList.add("task-complete");
   }
   
   if (data.type === "timer") {
@@ -123,7 +164,7 @@ function createCard (data) {
     </svg>
   `;
   deleteButton.classList.add("delete-button");
-  deleteButton.addEventListener("click", () => { removeCard(card, data) } );
+  deleteButton.addEventListener("click", () => data.removeSelf());
   buttons.appendChild(deleteButton);
 
   // Add everything to card
@@ -131,25 +172,10 @@ function createCard (data) {
   buttons.childNodes.forEach(button => button.classList.add("circle-button"));
   card.appendChild(buttons);
 
-  let displays = null;
-  switch (data.type) {
-    case "task": displays = tasksDisplays; break;
-    case "event": displays = eventsDisplays; break;
-    case "timer": displays = timersDisplays; break;
-  }
-
-  // Add card to appropriate display
-  displays.forEach(display => display.appendChild(card));
+  return card;
 }
 
-function removeCard (card, data) {
-  const arr = {
-    "task": tasks,
-    "event": events,
-    "timer": timers,
-  }[data.type];
-  const index = arr.findIndex(item => item == data);
-  arr.splice(index, 1);
-  card.remove();
-  saveData();
+function appendCard(display, card) {
+  display.appendChild(card);
+  return card;
 }
