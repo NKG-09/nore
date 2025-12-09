@@ -151,11 +151,12 @@ function loadData () {
     columns[key] = data ? data.map(item => Object.assign(new Constructor(), item)) : [];
   }
 
-  for (const column in columns) {
-    columns[column].forEach(card => {
-      columnsDisplays[column].forEach(display => 
-        display.appendChild(card.generateCardElement(card))
-      );
+  for (const key in columns) {
+    columns[key].forEach(card => {
+      card.references = [];
+      columnsDisplays[key].forEach(display => {
+        display.appendChild(card.generateCardElement(card));
+      })
     });
   }
 }
