@@ -7,7 +7,7 @@ const columns = {
 
 const columnsDisplays = {};
 for (const key in columns) {
-  columnsDisplays[key] = [...document.querySelectorAll(`.${key}`)];
+  columnsDisplays[key] = [...document.querySelectorAll(`.${key}.column`)];
 }
 
 /* Class declarations */
@@ -40,7 +40,7 @@ class Card {
       </svg>
     `;
     deleteButton.classList.add("delete-button");
-    deleteButton.addEventListener("click", () => this.removeSelf());
+    deleteButton.addEventListener("click", () => this.removeCard());
     buttons.appendChild(deleteButton);
 
     buttons.childNodes.forEach(button => button.classList.add("circle-button"));
@@ -52,14 +52,14 @@ class Card {
 
   getUniqueFeatures () {}
 
-  removeSelf () {
+  removeCard (save = true) {
     this.references.forEach(reference => reference.remove());
     this.references = [];
 
     const index = columns[this.column].indexOf(this);
     columns[this.column].splice(index, 1);
 
-    saveData();
+    if(save) saveData();
   }
 }
 
@@ -123,7 +123,7 @@ class Timer extends Card {
   }
 }
 
-/* Load data on start */
+/* Run on start */
 loadData();
 
 /* Main functions */
@@ -154,7 +154,7 @@ function loadData () {
   for (const column in columns) {
     columns[column].forEach(card => {
       columnsDisplays[column].forEach(display => 
-        appendCardToDisplay(display, card.generateCardElement(card))
+        display.appendChild(card.generateCardElement(card))
       );
     });
   }
