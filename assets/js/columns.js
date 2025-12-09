@@ -52,14 +52,14 @@ class Card {
 
   getUniqueFeatures () {}
 
-  removeCard (save = true) {
+  removeCard () {
     this.references.forEach(reference => reference.remove());
     this.references = [];
 
     const index = columns[this.column].indexOf(this);
     columns[this.column].splice(index, 1);
 
-    if(save) saveData();
+    saveData();
   }
 }
 
@@ -126,6 +126,15 @@ class Timer extends Card {
 /* Run on start */
 loadData();
 
+for (const key in columns) {
+  const buttons = [...document.querySelectorAll(`.${key}.clear-button`)];
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      clearColumn(key);
+    });
+  });
+}
+
 /* Main functions */
 function generateExamples () {
   for (let i = 0; i < 10; i++) {
@@ -151,7 +160,15 @@ function loadData () {
     columns[key] = data ? data.map(item => Object.assign(new Constructor(), item)) : [];
   }
 
+  refreshColumns();
+}
+
+function refreshColumns () {
   for (const key in columns) {
+    columnsDisplays[key].forEach(display => {
+      display.innerHTML = "";
+    });
+    
     columns[key].forEach(card => {
       card.references = [];
       columnsDisplays[key].forEach(display => {
@@ -171,6 +188,12 @@ function addCard (card) {
   );
 
   columns[card.column].push(card);
+  saveData();
+}
+
+function clearColumn (key) {
+  columns[key] = [];
+  refreshColumns();
   saveData();
 }
 
