@@ -48,7 +48,7 @@
   flex-direction: column;
   
   overflow: auto;
-  gap: var(--gap);
+  gap: var(--big-gap);
 }
 
 .message {
