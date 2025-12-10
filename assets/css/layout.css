@@ -30,17 +30,17 @@ body {
   display: none;
 }
 
-.dashboard {
+.dashboard.page {
   --columns: 4;
   grid-template-columns: repeat(var(--columns), minmax(400px, 1fr));
 }
 
-.chat {
+.chat.page {
   --columns: 2;
   grid-template-columns: 1fr 400px;
 }
 
-.planner {
+.planner.page {
   --columns: 3;
   grid-template-columns: 1fr 1fr 2fr;
 }

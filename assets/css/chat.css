@@ -80,3 +80,8 @@
 pre {
   overflow-x: auto;
 }
+
+.conversations {
+  background-color: var(--bg-color);
+  z-index: 1;
+}

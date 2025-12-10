@@ -1,4 +1,12 @@
+.planner .chatbox,
+.planner .conversations  {
+  grid-column: 1 / -1;
+  grid-row: 2 / -1;
+}
 
+.conversations.hidden {
+  display: none;
+}
 
 #calendar {
   display: flex;
