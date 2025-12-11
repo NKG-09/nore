@@ -4,8 +4,10 @@ button {
   border: none;
 }
 
-button:hover {
-  background: var(--sec-bg-color);
+@media (hover: hover) and (pointer: fine) {
+  button:hover {
+    background: var(--sec-bg-color);
+  }
 }
 
 .circle-button {
