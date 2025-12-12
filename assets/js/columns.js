@@ -124,7 +124,7 @@ class Timer extends Card {
 }
 
 /* Run on start */
-loadData();
+(async () => await loadData())();
 
 for (const key in columns) {
   const buttons = [...document.querySelectorAll(`.${key}.clear-button`)];
@@ -148,7 +148,7 @@ function generateExamples () {
   }
 }
 
-function loadData () {
+async function loadData () {
   const constructors = {
     "tasks": Task,
     "events": Event,
@@ -156,7 +156,8 @@ function loadData () {
   };
   
   for (const [key, Constructor] of Object.entries(constructors)) {
-    const data = JSON.parse(localStorage.getItem(key));
+    const entry = await db.storage.get(key);
+    const data = entry?.value;
     columns[key] = data ? data.map(item => Object.assign(new Constructor(), item)) : [];
   }
 
@@ -178,8 +179,11 @@ function refreshColumns () {
   }
 }
 
-function saveData () {
-  for (const key in columns) localStorage.setItem(key, JSON.stringify(columns[key]));
+async function saveData () {
+  for (const key in columns) {
+    const value = columns[key].map(card => JSON.parse(JSON.stringify(card)));
+    await db.storage.put({key, value});
+  }
 }
 
 function addCard (card) {

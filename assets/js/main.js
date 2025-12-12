@@ -1,3 +1,4 @@
+/* Navigation UI */
 const navButtons = [...document.querySelectorAll(".nav-button")];
 const pages = [...document.querySelectorAll(".page")];
 
@@ -13,3 +14,12 @@ function switchPage (pageIndex) {
   document.title = ["Dashboard", "Chat", "Planner", "Mood", "Settings"][pageIndex];
   localStorage.setItem('lastPage', '' + pageIndex);
 }
+
+/* Setup app database */
+const db = new Dexie("nore-db");
+
+db.version(1).stores({
+  storage: "key"
+});
+
+db.open().catch(err => console.error(err));
